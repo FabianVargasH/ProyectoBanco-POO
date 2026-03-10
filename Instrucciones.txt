@@ -1,0 +1,26 @@
+Este proyecto se tomará como referencia para la práctica de todas las funcionalidades, conceptos y
+técnicas del paradigma de POO, además de elementos de programación de mayor nivel como los patrones
+de diseño y la persistencia de datos.
+
+El sistema simula la operación de un banco, a través de las entidades Banco, Cliente y Cuenta, la cual a su vez
+se especializa en una jerarquía de CuentaAhorros, CuentaCredito y CuentaDebito. Cada una de las cuentas
+tiene un saldo, el cual puede tomar valores de los siguientes rangos:
+- Ahorros: el saldo siempre debe ser mayor a $100
+- Crédito: el saldo debe ser de $0 o negativo
+- Débito: el saldo debe ser de $0 o positivo
+
+Las operaciones de las cuentas son las siguientes:
+- retirar(): En Ahorros, Credito, Debito
+- depositar(): En Ahorros, Debito
+- abonar(): En Credito
+- generarIntereses(): En Ahorros, Credito, Debito
+- transferir(): En Ahorros, Debito *** AUN NO **    
+
+El cliente puede tener múltiples cuentas de cada tipo, cada una con un ID único, además de un porcentaje
+de interés. Además de sus cuentas, el cliente debe tener asociada su información personal
+(nombre completo, cédula, fecha de nacimiento, ocupación, residencia) además de una contraseña.
+
+El sistema debe contar con un menú de CLI con las opciones siguientes:
+- Registrar un cliente (cédulas únicas)
+- Desde el cliente, abrir una cuenta
+- Desde el cliente, realizar una transacción
