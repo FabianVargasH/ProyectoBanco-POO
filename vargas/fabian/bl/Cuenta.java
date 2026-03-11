@@ -39,6 +39,17 @@ public abstract class Cuenta {
         this.tasaInteres = tasaInteres;
     }
 
+    public abstract String getOperacionesDisponibles();
+
+    public void depositar(double monto){
+        System.out.println(" Operacion no disponible para este tipo de cuenta"); //Como preterminado tendra que no es disponible, despues se sobreescribe
+    }
+
+    public void abonar(double monto){
+        System.out.println(" Operacion no disponible para este tipo de cuenta");
+    }
+
+    @Override
     public String toString(){
         return 
         "Tipo de cuenta: " + getTipoCuenta() + 

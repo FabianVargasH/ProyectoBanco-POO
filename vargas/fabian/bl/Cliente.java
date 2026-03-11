@@ -31,7 +31,7 @@ public class Cliente{
         this.cuentaCredito = new ArrayList<>();
     }
 
-    public CuentaAhorro abrirCuentaAhorros(String prefijo, double saldoInicial, double tasaInteres){
+    public CuentaAhorro abrirCuentaAhorros(double saldoInicial, double tasaInteres){
         CuentaAhorro cuenta = new CuentaAhorro(saldoInicial, tasaInteres);
         cuentaAhorros.add(cuenta);
         System.out.println("Cuenta de ahorros abierta: " + cuenta.getId());
@@ -93,7 +93,7 @@ public class Cliente{
     public List<CuentaDebito> getCuentasDebito() {
          return cuentaDebito; }
 
-    public void mostrarCuenta(){
+    public void mostrarCuentas(){
         System.out.println("\n---Cuenta de " + nombreCompleto + "---");
         if(cuentaAhorros.isEmpty() && cuentaCredito.isEmpty() && cuentaDebito.isEmpty()){
             System.out.println("Sin cuentas registradas;");
@@ -112,6 +112,7 @@ public class Cliente{
         }
     }
 
+    @Override
     public String toString(){
         return "\nCliente: " + nombreCompleto + 
                "\nCedula: " + cedula + 
