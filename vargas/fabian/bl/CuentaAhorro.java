@@ -7,6 +7,7 @@ public class CuentaAhorro extends Cuenta {
         super("AH",saldoInicial,tasaInteres);
     }
 
+    @Override
     protected void validarSaldo(double saldo){
         if(saldo <= SALDO_MINIMO){
             System.out.println("El saldo de la CUENTA DE AHORROS deber ser mayor a " + SALDO_MINIMO + "\nSaldo: " + saldo);
@@ -14,6 +15,7 @@ public class CuentaAhorro extends Cuenta {
         }
     }
 
+    @Override
     public void retirar(double monto){
         if(monto <= 0){
             System.out.println("El monto ingresado debe ser mayor a 0");
@@ -33,12 +35,18 @@ public class CuentaAhorro extends Cuenta {
         System.out.println("Deposito de " + monto + "realizado con exito. \nNuevo Saldo: " + getSaldo());
     }
 
+    @Override
     public void generarIntereses(){
         double intereses = getSaldo() * (getTasaInteres()/100);
         setSaldo(getSaldo() + intereses);
         System.out.println("Intereses generados: " + intereses + "Nuevo saldo " + getSaldo());
     }
 
+    public String getOperacionesDisponibles(){
+        return "1. Retirar\n2. Depositar\n5Generar intereses";
+    }
+
+    @Override
     public String getTipoCuenta(){
         return "AHORROS";
     }

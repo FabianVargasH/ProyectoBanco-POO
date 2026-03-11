@@ -36,6 +36,10 @@ public class CuentaCredito extends Cuenta {
         System.out.println("Abono de: $ " + monto + " exitoso \nSaldo: $" + getSaldo());
     }
 
+    public String getOperacionesDisponibles(){
+        return "1. Retirar\n3. Abonar\n5Generar intereses";
+    }
+
     public void generarIntereses(){
         double intereses = getSaldo() * (getTasaInteres()/100);
         setSaldo(getSaldo()+intereses);
