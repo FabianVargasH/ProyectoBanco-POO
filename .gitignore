@@ -1,4 +1,4 @@
-.class
+*.class
 .github
 
 
@@ -32,5 +32,3 @@ Thumbs.db
 /dataSources.local.xml
 
 /httpRequests/
-
-.idea
