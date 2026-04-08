@@ -1,4 +1,5 @@
-package vargas.fabian.bl;
+package vargas.fabian.bl.entities;
+
 public class CuentaCredito extends Cuenta {
   
     public CuentaCredito(double saldoInicial, double tasaInteres){
@@ -37,7 +38,7 @@ public class CuentaCredito extends Cuenta {
     }
 
     public String getOperacionesDisponibles(){
-        return "1. Retirar\n3. Abonar\n5Generar intereses";
+        return "1. Retirar\n3. Abonar\n5. Generar intereses";
     }
 
     public void generarIntereses(){

@@ -1,4 +1,4 @@
-package vargas.fabian.bl;
+package vargas.fabian.bl.entities;
 
 public abstract class Cuenta {
     protected double saldo;
@@ -53,9 +53,9 @@ public abstract class Cuenta {
     public String toString(){
         return 
         "Tipo de cuenta: " + getTipoCuenta() + 
-        "Id: " + id + 
-        "Saldo: " + saldo + 
-        "Interés: " + tasaInteres; 
+        "\nId: " + id +
+        "\nSaldo: " + saldo +
+        "\nInterés: " + tasaInteres;
 
     }
 }

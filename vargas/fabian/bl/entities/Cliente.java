@@ -1,4 +1,4 @@
-package vargas.fabian.bl;
+package vargas.fabian.bl.entities;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -86,6 +86,8 @@ public class Cliente{
          return ocupacion; }
     public String getResidencia() {
          return residencia; }
+    public String getContrasena() {
+        return contrasena; }
     public List<CuentaAhorro> getCuentasAhorros() {
          return cuentaAhorros; }
     public List<CuentaCredito> getCuentasCredito() {

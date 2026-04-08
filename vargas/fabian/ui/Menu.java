@@ -3,39 +3,40 @@ package vargas.fabian.ui;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.security.spec.RSAOtherPrimeInfo;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+
 import vargas.fabian.bl.*;
+
+import vargas.fabian.bl.entities.Cliente;
+import vargas.fabian.bl.entities.Cuenta;
+import vargas.fabian.tl.Controlador;
 
 public class Menu {
     public static BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
-    private Banco banco;
     private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
-    public Menu(Banco banco) {
-        this.banco = banco;
-    }
-
-    public void iniciar() throws IOException{
-        System.out.println("= = = = = = = = = = = ");
-        System.out.println("Bienvenido al sistema del " + banco.getNombre());
-        System.out.println("= = = = = = = = = = = ");
-
+    public static void menuPrincipal() throws IOException, SQLException, ClassNotFoundException {
         boolean continuar = true;
         while(continuar){
-            mostrarMenuPrincipal();
+            System.out.println("\n--Menu Principal--");
+            System.out.println("1.Registrar cliente");
+            System.out.println("2. Acceder como cliente");
+            System.out.println("0. Salir");
             System.out.println("Seleccione una opcion");
             int opcion = Integer.parseInt(entrada.readLine());
             switch(opcion){
                 case 1:
-                    registrarCliente();
+                    Controlador.registrarCliente();
                     break;
                 case 2:
-                    menuCliente();
-                    break;
-                case 3:
-                    banco.listarClientes();
+                    Cliente cliente = Controlador.ingresarCliente();
+                    if(Controlador.ingresarCliente() == null){
+                        System.out.println("Auntentificacion inválida");
+                        continue;
+                    }
                     break;
                 case 0:
                     System.out.println("Saliendo del menú...");
@@ -47,90 +48,44 @@ public class Menu {
             }
         }
     }
-
-    public void mostrarMenuPrincipal(){
-        System.out.println("\n--Menu Principal--");
-        System.out.println("1.Registrar cliente");
-        System.out.println("2. Acceder como cliente");
-        System.out.println("3. Listar clientes");
-        System.out.println("0. Salir");
-    }
-
-    //metodo para leer fechas de forma validada
-    private LocalDate leerFecha(String dato) {
-        while (true) {
-            try {
-                System.out.print(dato);
-                return LocalDate.parse(entrada.readLine().trim(), FORMATO_FECHA);
-            } catch (DateTimeParseException e) {
-                System.out.println("  Formato inválido. Use dd/MM/yyyy.");
-            } catch (IOException e) {
-                System.out.println("  Error de lectura: " + e.getMessage());
-            }
-        }
-    }
-
-    private void registrarCliente()throws IOException{
+    private static void registrarCliente()throws IOException{
         System.out.println("\n--Registro de cliente--");
         System.out.print("Nombre completo: ");
         String nombre = entrada.readLine();
         System.out.print("\nCedula:");
         String cedula = entrada.readLine();
-        LocalDate fecha = leerFecha("Fecha de nacimiento (yyyy/MM/dd): ");
+        LocalDate fecha = LocalDate.parse(entrada.readLine());
         System.out.println("\nIngrese su ocupacion");
         String ocupacion = entrada.readLine();
         System.out.print("\nIngrese su residencia");
         String residencia = entrada.readLine();
         System.out.print("Ingrese su contraseña:");
         String contrasena = entrada.readLine();
-
         Cliente cliente = new Cliente(nombre, cedula, fecha, ocupacion, residencia, contrasena);
-        banco.registrarCliente(cliente);
     }
-
-    private void menuCliente()throws IOException{
-        String cedula = entrada.readLine();
-        Cliente cliente = banco.buscarCliente(cedula);
-        if(cliente == null){
-            System.out.println("Cliente no encontrado");
-            return;
-        }
-        String contrasena = entrada.readLine();
-        if(!cliente.autenticar(contrasena)){
-            System.out.println("Contraseña incorrecta");
-            return;
-        }
-        System.out.println("Bienvenido " + cliente.getNombreCompleto());
-
-        boolean continuar = true;
-        while(continuar){
-            System.out.println("\n--Menu cliente--");
-            System.out.println("1. Abrir cuenta");
-            System.out.println("2. Realizar transacción");
-            System.out.println("3. Ver mis cuentas");
-            System.out.println("0. Volver");
-            int opcion = Integer.parseInt(entrada.readLine());
-            switch(opcion){
-                case 1:
-                    abrirCuenta(cliente);
-                    break;
-                case 2:
-                    realizarTransaccion(cliente);
-                    break;
-                case 3:
-                    cliente.mostrarCuentas();
-                    break;
-                case 0:
-                    continuar = false;
-                    break;
-                default:
-                    System.out.println("Opcion invalida");
-                    break;
-            }
+    private static void menuCliente(Cliente cliente)throws IOException{
+        int opcion;
+        System.out.println("-- Menu de cliente --");
+        System.out.println("1. Abrir una cuenta");
+        System.out.println("2. Hacer un retiro");
+        System.out.println("3. Hacer un depósito o abono");
+        System.out.println("4. Generar intereses");
+        System.out.println("5. Hacer una transferencia");
+        System.out.println("6. Ver todas las cuentas");
+        System.out.println("7. Eliminar una cuenta");
+        System.out.println("0. Salir");
+        System.out.print("Ingrese su elección: ");
+        opcion = Integer.parseInt(entrada.readLine());
+        switch (opcion){
+            case 1:
+                abrirCuenta(cliente);
+                break;
+            case 2:
+                hacerRetiro
         }
     }
 
-    private void abrirCuenta(Cliente cliente)throws IOException{
+    private static void abrirCuenta(Cliente cliente)throws IOException{
         System.out.println("\n--Abrir Cuenta--");
         System.out.print("\n1. Ahorros (saldo > 100");
         System.out.print("\n2. Credito (saldo 0 o negativo");

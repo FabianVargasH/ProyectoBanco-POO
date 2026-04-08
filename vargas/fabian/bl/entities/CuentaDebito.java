@@ -1,5 +1,6 @@
-package vargas.fabian.bl;
-public class CuentaDebito extends Cuenta{
+package vargas.fabian.bl.entities;
+
+public class CuentaDebito extends Cuenta {
 
     public CuentaDebito(double saldoInicial, double tasaInterese){
         super("DB", saldoInicial, tasaInterese);
@@ -34,7 +35,7 @@ public class CuentaDebito extends Cuenta{
     }
     
    public String getOperacionesDisponibles(){
-        return "1. Retirar\n2. Depositar\n5Generar intereses";
+        return "1. Retirar\n2. Depositar\n5. Generar intereses";
     }
 
     @Override

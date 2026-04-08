@@ -1,4 +1,5 @@
-package vargas.fabian.bl;
+package vargas.fabian.bl.entities;
+
 public class CuentaAhorro extends Cuenta {
 
     private static final double  SALDO_MINIMO = 100.0;
@@ -21,7 +22,7 @@ public class CuentaAhorro extends Cuenta {
             System.out.println("El monto ingresado debe ser mayor a 0");
             return;
         }
-        double nuevoSaldo = getSaldo() + monto;
+        double nuevoSaldo = getSaldo() - monto;
         setSaldo(nuevoSaldo);
         System.out.println("Retiro exitoso de " + monto + "\nNuevo saldo: " + getSaldo());
     }
@@ -31,8 +32,8 @@ public class CuentaAhorro extends Cuenta {
             System.out.println("El monto ingresado debe ser mayor a 0");
             return;
         }
-        setSaldo(getSaldo()+saldo);
-        System.out.println("Deposito de " + monto + "realizado con exito. \nNuevo Saldo: " + getSaldo());
+        setSaldo(getSaldo() + monto);
+        System.out.println("Deposito de " + monto + " realizado con exito. \nNuevo Saldo: " + getSaldo());
     }
 
     @Override
@@ -43,7 +44,7 @@ public class CuentaAhorro extends Cuenta {
     }
 
     public String getOperacionesDisponibles(){
-        return "1. Retirar\n2. Depositar\n5Generar intereses";
+        return "1. Retirar\n2. Depositar\n5. Generar intereses";
     }
 
     @Override
