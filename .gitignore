@@ -1,34 +1,46 @@
+# Credenciales de base de datos
+**/bd.properties
+vargas/fabian/utils/bd.properties
+
+# Archivos compilados de Java
 *.class
-.github
+*.jar
+*.war
+*.ear
 
+# Directorios de compilación
+/target/
+/bin/
+/build/
+/out/
+/dist/
 
-bin/
-build/
-target/
-out/
-
-
+# Archivos de proyecto de IDE
 .idea/
 *.iml
-.vscode/
-.eclipse/
-.settings/
+*.ipr
+*.iws
 .classpath
 .project
+.settings/
+.vscode/
+*.swp
+*.swo
 
+# Archivos de log
+*.log
+logs/
 
+# Archivos de sistema operativo
 .DS_Store
 Thumbs.db
+desktop.ini
 
+# Archivos de base de datos locales
+*.db
+*.sqlite
 
-*.log
-
-/shelf/
-/workspace.xml
-
-/queries/
-
-/dataSources/
-/dataSources.local.xml
-
-/httpRequests/
+# Archivos de respaldo
+*.bak
+*.backup
+*.tmp

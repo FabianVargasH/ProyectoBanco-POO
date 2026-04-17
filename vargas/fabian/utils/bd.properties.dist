@@ -1,0 +1,8 @@
+# bd.properties.dist
+# Copiar este archivo a bd.properties y completar con tus datos
+
+driver=jdbc:mysql:
+server=localhost:3306
+database=bd_banco
+user=tu_usuario
+password=tu_contraseña

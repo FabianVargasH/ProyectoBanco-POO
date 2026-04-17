@@ -4,20 +4,24 @@ public abstract class Cuenta {
     protected double saldo;
     protected final String id;
     protected double tasaInteres;
-    private static int contador = 1;
 
-    public Cuenta(String prefijo, double tasaInteres, double saldoInicial){
-        this.id = prefijo + "-" + contador++;
+    public Cuenta(String id, double tasaInteres, double saldoInicial){
+        this.id = id;
+        this.tasaInteres = tasaInteres;
+        this.saldo = saldoInicial;
+    }
+
+    protected Cuenta(String id, double tasaInteres, double saldoInicial, boolean esExistente){
+        this.id = id;
         this.tasaInteres = tasaInteres;
         this.saldo = saldoInicial;
     }
 
     //Metodos
     protected abstract void validarSaldo(double saldo);
-    public abstract void retirar(double monto);
+    public abstract void retirar(double monto)throws Exception;
     public abstract void generarIntereses();
     public abstract String getTipoCuenta();
-
 
     protected void setSaldo(double saldo){
         this.saldo = saldo;
@@ -56,6 +60,5 @@ public abstract class Cuenta {
         "\nId: " + id +
         "\nSaldo: " + saldo +
         "\nInterés: " + tasaInteres;
-
     }
 }

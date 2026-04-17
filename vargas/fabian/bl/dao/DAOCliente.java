@@ -31,6 +31,5 @@ public class DAOCliente {
                 resultado.getString("ocupacion"),
                 resultado.getString("contrasena")
         );
-
     }
 }

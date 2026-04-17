@@ -18,10 +18,44 @@ public class AccesoBD {
         this.statement.executeUpdate(statement);
     }
 
-    public ResultSet ejecutarQuery(String query, String cedula, String contrasena) throws SQLException {
+    //Usado en eliminacion de cuenta
+    public void ejecutarStatement(String statement, String s1, String s2) throws SQLException {
+        preparedStatement = conexion.prepareStatement(statement);
+        preparedStatement.setString(1, s1);
+        preparedStatement.setString(2, s2);
+        preparedStatement.executeUpdate();
+    }
+
+    public void ejecutarStatement (String statement, double d, String s1, String s2) throws SQLException {
+        preparedStatement = conexion.prepareStatement(statement);
+        preparedStatement.setDouble(1, d);
+        preparedStatement.setString(2, s1);
+        preparedStatement.setString(3, s2);
+        preparedStatement.executeUpdate();
+    }
+
+    public void ejecutarStatement (String statement, double d, String s1) throws SQLException {
+        preparedStatement = conexion.prepareStatement(statement);
+        preparedStatement.setDouble(1, d);
+        preparedStatement.setString(2, s1);
+        preparedStatement.executeUpdate();
+    }
+
+    public ResultSet ejecutarQuery(String query, String s1, String s2) throws SQLException {
         preparedStatement = conexion.prepareStatement(query);
-        preparedStatement.setString(1, cedula);
-        preparedStatement.setString(2, contrasena);
+        preparedStatement.setString(1, s1);
+        preparedStatement.setString(2, s2);
+        return preparedStatement.executeQuery();
+    }
+    public ResultSet ejecutarQuery(String query, String s) throws SQLException {
+        preparedStatement = conexion.prepareStatement(query);
+        preparedStatement.setString(1,s);
+        return preparedStatement.executeQuery();
+    }
+
+
+    public ResultSet ejecutarQuery(String query) throws SQLException {
+        preparedStatement = conexion.prepareStatement(query);
         return preparedStatement.executeQuery();
     }
 }

@@ -1,5 +1,7 @@
 package vargas.fabian.bl.entities;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,21 +33,21 @@ public class Cliente{
         this.cuentaCredito = new ArrayList<>();
     }
 
-    public CuentaAhorro abrirCuentaAhorros(double saldoInicial, double tasaInteres){
+    public CuentaAhorro abrirCuentaAhorros(double saldoInicial, double tasaInteres) throws SQLException, IOException, ClassNotFoundException {
         CuentaAhorro cuenta = new CuentaAhorro(saldoInicial, tasaInteres);
         cuentaAhorros.add(cuenta);
         System.out.println("Cuenta de ahorros abierta: " + cuenta.getId());
         return cuenta;
     }
 
-    public CuentaCredito abrirCuentaCredito(double tasaInteres){
+    public CuentaCredito abrirCuentaCredito(double tasaInteres) throws SQLException, IOException, ClassNotFoundException {
         CuentaCredito cuenta = new CuentaCredito(0.0, tasaInteres);
         cuentaCredito.add(cuenta);
         System.out.println("Cuenta de ahorros abierta: " + cuenta.getId());
         return cuenta;
     }
 
-    public CuentaDebito abrirCuentaDebito(double saldoInicial, double tasaInteres){
+    public CuentaDebito abrirCuentaDebito(double saldoInicial, double tasaInteres) throws SQLException, IOException, ClassNotFoundException {
         CuentaDebito cuenta = new CuentaDebito(saldoInicial, tasaInteres);
         cuentaDebito.add(cuenta);
         System.out.println("Cuenta Debito abierta: " + cuenta.getId());
